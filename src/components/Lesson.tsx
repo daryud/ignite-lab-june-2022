@@ -1,6 +1,6 @@
 import { CheckCircle, Lock } from 'phosphor-react';
 import { isPast, format } from 'date-fns';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import ptBR from 'date-fns/locale/pt-BR';
 
 interface LessonProps {
@@ -18,14 +18,14 @@ export function Lesson({availableAt, type, title, slug}: LessonProps) {
     });
 
     return (
-        <Link to={`/event/lesson/${slug}`} className="group">
+        <NavLink to={`/event/lesson/${slug}`} className="group parent">
             <span className="text-gray-300">
                 {availableDateFormated}
             </span>
-            <div className="rounded border border-gray-600 p-4 mt-4 group-hover:border-green-700 transition-colors">
+            <div className="rounded border border-gray-600 p-4 mt-4 group-hover:border-green-700 transition-colors parent-active:bg-green-500">
                 <header className="flex justify-between items-center ">
                     {isLessonAvailable ? (
-                        <span className="text-sm text-blue-500 font-medium flex items-center gap-2">
+                        <span className="text-sm text-blue-500 font-medium flex items-center gap-2 parent-active:text-white">
                             <CheckCircle size={20} />
                             Conteúdo liberado
                         </span>
@@ -36,12 +36,12 @@ export function Lesson({availableAt, type, title, slug}: LessonProps) {
                         </span>
                     )}
                     
-                    <span className="text-xs font-bold text-white py-[0.125rem] px-2 rounded border border-green-300 block">
+                    <span className="text-xs font-bold text-white py-[0.125rem] px-2 rounded border border-green-300 block parent-active:text-white parent-active:border-white">
                         {type === 'live' ? 'AO VIVO' : 'AULA PRÁTICA'}
                     </span>
                 </header>
-                <strong className="mt-4 block">{title}</strong>
+                <strong className="mt-4 block parent-active:text-white">{title}</strong>
             </div>
-        </Link>
+        </NavLink>
     )
 }

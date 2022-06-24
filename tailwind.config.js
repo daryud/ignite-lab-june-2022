@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const plugin = require("tailwindcss/plugin");
+
 module.exports = {
   content: ["./src/**/*.tsx"],
   theme: {
@@ -33,5 +36,14 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        ".parent": {},
+      });
+    }),
+    plugin(function ({ addVariant }) {
+      addVariant("parent-active", ".parent.active &");
+    }),
+  ],
 };
